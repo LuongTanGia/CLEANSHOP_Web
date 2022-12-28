@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CLEANSHOP.Models.Type>
+
+
+<div class="dropdown a">
+    <h4 type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        &#9776;
+    </h4>
+
+    <div class="dropdown-menu b" aria-labelledby="dropdownMenuButton" style="text-align:left;background-color :white">
+        <div class="sub-menu-1">
+            <ul>
+                <li><a href="https://localhost:44364/DichVu/SPTheoLoai/1">khan lau</a></li>
+                <li><a href="https://localhost:44364/DichVu/SPTheoLoai/2">Ban Chai</a></li>
+                <li><a href="https://localhost:44364/DichVu/SPTheoLoai/3">Chai Xit</a></li>
+                <li><a href="https://localhost:44364/DichVu/SPTheoLoai/4">Hut Am</a></li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<style>
+    .sub-menu-1{
+        display:none;
+    }
+    .dropdown-menu ul li :hover .sub-menu-1 {
+        display:block;
+        position:absolute;
+        background:rgb(0,100,0);
+        margin-top:15px;
+        margin-left:-15px;
+    }
+
+</style>

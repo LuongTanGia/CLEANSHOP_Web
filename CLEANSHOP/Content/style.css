@@ -1,0 +1,10 @@
+﻿/*---------------------------------------------------*/
+.img:hover {
+    animation-name: phongto;
+    animation : phongto 2s forwards;
+     /*transform: translateY(-3.5rem);*/
+
+}
+
+
+    

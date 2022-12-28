@@ -1,0 +1,98 @@
+﻿
+@model IEnumerable<CLEANSHOP.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<style>
+    body {
+        background-image: url(https://images.pexels.com/photos/5706013/pexels-photo-5706013.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+        background-size:cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        object-fit:cover;
+    }
+    img {
+        width: 100%;
+    }
+   
+</style>
+
+
+<h1  style="text-align:center; margin-top:100px;"> Sản phẩm phụ kiện giày giày</h1>
+@using (Html.BeginForm("Index", "DichVu", FormMethod.Get, new { @class = "form-inline" }))
+{
+
+    <div class="form-group" style="justify-content: center; display: flex; margin:50px">
+
+        <input type="Text" class="form-control col-md-10" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên sản phẩm cần tìm">
+        <input type="submit" class="btn btn-danger" value="Tìm sản phẩm..." style="margin: 0 0 0 10px; margin-top: -5px">
+    </div>
+}
+
+<section id="portfolio" >
+   
+        
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+
+            <div class="col-md-4 col-sm-6 portfolio-item left-to-right show-on-scroll" >
+                <a href="#@item.Id" class="portfolio-link" data-toggle="modal">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <i class="fa fa-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="@item.Image" class="img-responsive" alt="" >
+                </a>
+                <div class="portfolio-caption">
+                    <h4>@item.ProductName</h4>
+                    <p class="text-muted">@item.Text</p>
+                    <p>
+                        @if (item.Price == item.DisPrice)
+                        {
+                            <label style=" font-size: 15px; color: white; text-shadow: 1px 1px 1px #808080"> Giá : @item.DisPrice VND</label>
+                        }
+                        else
+                        {
+
+                            <h3 style=" text-decoration: line-through; font-size: 20px; color: red; text-shadow: 1px 1px 1px #808080">Giá gốc @item.Price VND</h3>
+                            <label style="color: darkblue; text-shadow: 1px 1px 1px #808080">Còn : @item.DisPrice VND </label>
+                        }
+                    </p>
+                    <p>Số lượng :  @item.Amount</p>
+                    <div>
+                        <a class="btn btn-primary " href="@Url.Action("Detail", "DichVu", new { @id = item.Id })">Chi tiết</a>
+                        @if (item.Amount > 0)
+                        {
+                            <a class="btn btn-success"
+                               href="@Url.Action("ThemGioHang", "GioHang", new
+                                                         {
+                                                                  @id = item.Id,
+                                                                    @strURL = Request.Url.ToString()
+                                                            })">Thêm vào giỏ</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-warning">
+                                Tạm Hết Hàng
+                            </a>
+                        }
+                    </div>
+                </div>
+                
+            </div>
+            }
+
+        </div>
+
+    
+</section>
+
+

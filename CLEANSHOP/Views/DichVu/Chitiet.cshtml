@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CLEANSHOP.Models.CartDetail>
+
+@{
+    ViewBag.Title = "Chitiet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết hóa đơn</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Tên sản phẩm
+        </th>
+        <th>
+            Hình ảnh
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Giá
+        </th>
+        <th></th>
+    </tr>
+    @{
+        int Total = 0;
+    }
+@foreach (var item in Model) {
+
+    int lineTotal = Convert.ToInt32(item.Amount * item.Price);
+    Total = Convert.ToInt32(@Total + lineTotal);
+
+
+    Session["SesTotal"] = Total;
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Product.ProductName)
+    </td>
+    <td style="width:55%;">
+        <img style="width: 25%;" src="@item.Product.Image" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Amount)
+    </td>
+    <td>
+        @String.Format("{0:0,000}", item.Price) VND
+    </td>
+
+</tr>
+}
+
+</table>
+<tr>
+    <td colspan="5" class="text-right"><b>Tổng hóa đơn: @String.Format("{0:0,0}", Total) VNĐ</b></td>
+
+</tr>

@@ -1,0 +1,221 @@
+﻿@model IEnumerable<CLEANSHOP.Models.Product>
+@{
+    ViewBag.Title = "Liên hệ";
+    @*    Layout = "~/Views/Shared/_Layout.cshtml";
+    *@}
+
+<h2>Sản phẩm được tạo bởi : </h2>
+
+<div class="Nhom ">
+    <!--<div class="card">
+        <div class="box">-->
+            @*<div class="img">*@
+                @*<img src="" alt="Workplace" usemap="#workmap">
+
+                <map name="workmap">
+
+                    <area shape="circle" coords="34,44,270,350" alt="ThayHung" href="">
+                </map>
+            </div>
+            <h2>  Nguyễn Mạnh Hùng<br><span></span></h2>
+            <p>
+                
+            </p>
+            <span>
+                <ul>
+                    <li><a href=""><i class="fa-brands fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-google-plus" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+                </ul>
+            </span>*@
+        <!--</div>
+    </div>-->
+    <div class="card">
+        <div class="box">
+            <div class="img">
+                @*<img src="~/Content/Images/tranminh.jpg">*@
+                <img src="~/Content/Images/tranminh.jpg" alt="Workplace" usemap="#workmap">
+
+                <map name="workmap">
+
+                    <area shape="circle" coords="34,44,270,350" alt="MinhTran" href="https://www.facebook.com/yoonye229">
+                </map>
+            </div>
+            <h2>Trần Bình Minh<br><span style="margin-left:15px;">Trưởng nhóm</span></h2>
+            <p>
+                Học càng nhiều, gánh càng nhiều
+            </p>
+            <span>
+                <ul>
+                    <li><a href="https://www.facebook.com/yoonye229"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-google-plus" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+                </ul>
+            </span>
+        </div>
+    </div>
+    @*<div class="card">
+        <div class="box">
+            <div class="img">
+                <img src="~/Content/Images/minh phan.jpg">
+            </div>
+            <h2>Phan Công Minh<br><span>Sinh viên tiêu biểu</span></h2>
+            <p>
+                Mặc ai nói ngả nói nghiêng, mình học vẫn dốt đúng không cả nhà :D 
+            </p>
+            <span>
+                <ul>
+                    <li><a href="#"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-google-plus" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+                </ul>
+            </span>
+        </div>
+    </div>*@
+
+
+    <div class="card">
+        <div class="box">
+            <div class="img">
+                <img src="~/Content/Images/tuanhanh.jpg">
+            </div>
+            <h2>Nguyễn Trần Tuấn Anh<br><span style="margin-left:31px;">Sinh viên tiêu biểu</span></h2>
+            <p>
+               Thích thì học ko thích thì học
+            </p>
+            <span>
+                <ul>
+                    <li><a href="https://www.facebook.com/profile.php?id=100011051079834"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-google-plus" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+                </ul>
+            </span>
+        </div>
+    </div>
+    <div class="card">
+        <div class="box">
+            <div class="img">
+                <img src="~/Content/Images/khoa ngu.jpg">
+            </div>
+            <h2>Nguyễn Trần Đăng Khoa<br><span style="margin-left:46px;">Sinh viên tiêu biểu</span></h2>
+            <p>
+                Sống ảo từng khoảng khắc
+            </p>
+            <span>
+                <ul>
+                    <li><a href="https://www.facebook.com/dangkhoa.981"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-google-plus" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+                </ul>
+            </span>
+        </div>
+    </div>
+</div>
+
+<style>
+    .Nhom {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .card {
+        width: 300px;
+        height: 400px;
+        margin: 30px;
+        border-radius: 20px;
+    }
+
+        .card:hover {
+            box-shadow: 0 30px 70px rgba(0,0,0,.2);
+        }
+
+        .card .box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .card .box .img {
+                width: 120px;
+                height: 120px;
+                margin: 5px auto;
+                border-radius: 50%;
+                overflow: hidden;
+            }
+
+                .card .box .img img {
+                    width: 100%;
+                    height: 100%;
+                }
+
+            .card .box h2 {
+                font-size: 20px;
+                color: #262626;
+                margin: 20px auto;
+            }
+
+                .card .box h2 span {
+                    font-size: 14px;
+                    background: #e91e63;
+                    color: #fff;
+                    display: inline-block;
+                    padding: 4px 10px;
+                    border-radius: 15px;
+                }
+
+            .card .box p {
+                margin: 10px;
+                color: #262626;
+            }
+
+            .card .box span {
+                display: inline-flex;
+            }
+
+            .card .box ul {
+                margin: 0;
+                padding: 0;
+            }
+
+                .card .box ul li {
+                    list-style: none;
+                    float: left;
+                }
+
+                    .card .box ul li a {
+                        display: block;
+                        color: #aaa;
+                        margin: 0 10px;
+                        font-size: 20px;
+                        transition: 0.5s;
+                        text-align: center;
+                    }
+
+                    .card .box ul li:hover a {
+                        color: #e91e63;
+                        transform: rotateY(360deg);
+                    }
+
+    body {
+        background: rgb(34,193,195);
+        background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(255,250,250,1) 34%);
+        padding-top: 100px;
+        padding-bottom: 20px;
+    }
+</style>
+<div>
+    @Html.ActionLink("Về trang chủ", "Index")
+</div>

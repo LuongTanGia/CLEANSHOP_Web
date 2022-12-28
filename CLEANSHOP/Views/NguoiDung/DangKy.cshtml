@@ -1,0 +1,262 @@
+﻿@model CLEANSHOP.Models.Customer
+
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        margin-top:100px;
+@*        background-image: url(https://images.pexels.com/photos/2421374/pexels-photo-2421374.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+*@        background-repeat:no-repeat;
+        background-size:cover;
+        object-fit:cover;
+        }
+</style>
+<h2>Đăng Ký</h2>
+
+<div class="img_left"></div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal" style="width:100%">
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group form-groups">
+        <div class="col-md-10">
+            <label class="control-label col-md-2" for="Name">
+                Họ Tên :
+            </label>
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*    <div class="form-group">
+            <label class="control-label col-md-2" for="Phone">
+                Số điện thoại :
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+    <div class="form-group form-groups">
+        <div class="col-md-10">
+            <label class="control-label col-md-2">
+
+                <strong>Số điện thoại :</strong>
+            </label>
+            <input class="form-control" type="text" id="Phones" name="Phone" placeholder="Nhập số điện thoại " onchange="PhoneCheck()" />
+            @ViewData["nhapDT"]
+
+        </div>
+
+    </div>
+    <div class="col-md-10">
+        <p id="Status1" />
+    </div>
+
+
+
+
+    <script>
+        function PhoneCheck() {
+                $("#Status1").html("Checking...");
+                $.post("@Url.Action("CheckPhone", "NguoiDung")",
+                    {
+                        userdata: $("#Phones").val()
+                    },
+                    function (data) {
+                        if (data == 0) {
+                            $("#Status1").html('<font color = "Green"> Số điện thoại có thể sử dụng.</font>');
+                            $("#Phones").css("border-color", "Green");
+                        }
+                        else {
+                            $("#Status1").html('<font color = "Red"> Số điện thoại đã có người sử dụng.</font>');
+                            $("#Phones").css("border-color", "Red");
+
+                        }
+                    });
+            }
+    </script>
+
+
+
+    <div class="form-group form-groups">
+        <div class="col-md-10">
+            <label class="control-label col-md-2" for="Address">
+                Địa Chỉ :
+            </label>
+            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            @ViewData["nhapDC"]
+        </div>
+    </div>
+
+    @*  <div class="form-group">
+            <label class="control-label col-md-2" for="Email">
+                Email :
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+    <div class="form-group form-groups">
+        <div class="col-md-10">
+            <label class="control-label col-md-2">
+
+                <strong>Email :</strong>
+            </label>
+            <input class="form-control" type="text" id="Emaill" name="Email" placeholder="Nhập Email" onchange="GmailCheck()" />
+            @ViewData["nhapEmail"]
+        </div>
+    </div>
+
+
+    <div class="col-md-10">
+        <p id="Status2" />
+    </div>
+
+
+    <script>
+        function GmailCheck() {
+                $("#Status2").html("Checking...");
+                $.post("@Url.Action("CheckEmail", "NguoiDung")",
+                    {
+                        userdata: $("#Emaill").val()
+                    },
+                    function (data) {
+                        if (data == 0) {
+                            $("#Status2").html('<font color = "Green"> Email có thể sử dụng.</font>');
+                            $("#Emaill").css("border-color", "Green");
+                        }
+                        else {
+                            $("#Status2").html('<font color = "Red"> Email không thể sử dụng.</font>');
+                            $("#Emaill").css("border-color", "Red");
+
+                        }
+                    });
+            }
+    </script>
+
+
+
+    @*    <div class="form-group">
+            <label class="control-label col-md-2" for="LoginName">
+                Tên đăng nhập :
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LoginName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LoginName, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group form-groups">
+        <div class="col-md-10">
+            <label class="control-label col-md-2">
+
+                <strong>Tài Khoản:</strong>
+            </label>
+            <input class="form-control" type="text" id="Username" name="LoginName" placeholder="Nhập tài khoản" onchange="UserCheck()" />
+            @ViewData["NhapTK"]
+        </div>
+    </div>
+
+
+    <div class="col-md-10">
+        <p id="Status" />
+    </div>
+
+
+    <script>
+            function UserCheck() {
+                $("#Status").html("Checking...");
+                $.post("@Url.Action("CheckUsername","NguoiDung")",
+                    {
+                        userdata: $("#Username").val()
+                    },
+                    function (data) {
+                        if (data == 0) {
+                            $("#Status").html('<font color = "Green"> Tài khoản có thể sử dụng.</font>');
+                            $("#Username").css("border-color", "Green");
+                        }
+                        else {
+                            $("#Status").html('<font color = "Red"> Tài khoản tồn tại.</font>');
+                            $("#Username").css("border-color", "Red");
+
+                        }
+                    });
+            }
+    </script>
+
+
+
+
+    <div class="form-group form-groups">
+        <div class="col-md-10">
+            <label class="control-label col-md-2" for="Password">
+                Mật khẩu :
+            </label>
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group form-groups">
+        <div class="col-md-10">
+            <label class="control-label col-md-2" for="ConfirmPassword">
+                Xác nhận mật khẩu :
+            </label>
+            <input class="form-control text-box single-line input-validation-error"
+                   data-val="true" data-val-required="Phải nhập mật khẩu xác nhận!"
+                   id="ConfirmPassword" name="ConfirmPassword" type="password" value="" aria-
+                   describedby="ConfirmPassword-error" aria-invalid="true">
+            @ViewData["NhapMKXN"]
+            @ViewData["MatKhauGiongNhau"]
+        </div>
+    </div>
+
+    <div class="form-group form-groups">
+        <div class="col-md-10">
+            <label class="control-label col-md-2" for="DateofBirth">
+                Ngày sinh :
+            </label>
+            @Html.EditorFor(model => model.DateofBirth, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DateofBirth, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group form-groups">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Đăng ký" class="btn btn-info" />
+        </div>
+    </div>
+</div>
+}
+
+
+
+<style>
+    .form-control {
+        width: 35%;
+    }
+
+    .form-groups {
+        transform: translate(-200px, 10px);
+    }
+
+    .img_left {
+        background-image: url(https://images.pexels.com/photos/8017295/pexels-photo-8017295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 60vh;
+        width: 50vw;
+        transform: translate(500px,0);
+        position: absolute;
+    }
+</style>

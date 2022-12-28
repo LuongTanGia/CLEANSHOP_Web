@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CLEANSHOP.Models.Cart>
+@using CLEANSHOP.Models;
+
+@{
+    ViewBag.Title = "DonHangCuaToi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Đơn hàng của tôi</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Tên khách hàng
+        </th>
+        <th>
+            Ngày giao
+        </th>
+        <th>
+            Ngày đặt
+        </th>
+
+        <th>
+            Tổng tiền
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.Name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+
+
+        </tr>
+    }
+
+</table>
+@*<tr>
+    <td colspan="5" class="text-right"><b>Tổng hóa đơn : @String.Format("{0:0000}", @ViewBag.tongtien2) VNĐ</b></td>
+
+</tr>*@

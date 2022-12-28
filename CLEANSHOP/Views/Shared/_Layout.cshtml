@@ -1,0 +1,548 @@
+﻿@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link href="~/Content/fontawesome-free-6.1.1-web/css/all.css" rel="stylesheet" />
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link href="~/Content/fontawesome-free-6.1.1-web/css/all.css" rel="stylesheet" />
+        <link href="~/Content/Site.css" rel="stylesheet" />
+        <link href="~/Content/style.css" rel="stylesheet" />-->
+    <link href="~/Content/fontawesome-free-6.1.1-web/css/boostrap-social.css" rel="stylesheet" />
+    </head>*@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="@Url.Content("~/Content/Images/ak2m.jpg")" style="border-radius:50%" />
+
+    <title>Phụ kiện giày AKM</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Assets/css/Scroll.css" rel="stylesheet" type="text/css">
+    <link href="~/Assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="~/Assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Theme CSS -->
+    <link href="~/Assets/css/agency.min.css" rel="stylesheet">
+    <link href="~/Assets/css/agency.css" rel="stylesheet">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
+    <![endif]-->
+    @* @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+</head>
+
+<body style="display:flex; flex-direction:column; ">
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top aas">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="https://localhost:44364/DichVu/Index2">A K 2 M &#10084; &#10084; &#10084;</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="width:109%">
+                <ul class="nav navbar-nav navbar-right" style="margin-right: -50px;">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a href="#" class="page-scroll" style="margin-top:5px; color: white">
+
+                            @Html.Action("LoaiSanPham", "DichVu")
+                        </a>
+
+                    </li>
+                    <li>
+                        @using (Html.BeginForm("Index2", "DichVu", FormMethod.Get, new { @class = "form-inline" }))
+                        {
+                            <div class="form-group form-inline" style="display: flex; align-items: center; justify-content: center;  ">
+
+                                <input type="Text" class="form-control col-md-10 " style=" margin-top: 5px; width: auto; color: #fed136 " value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên sản phẩm cần tìm ">
+                                <input type="submit" class="btn btn-default" value="Tìm " style="margin-left: 10px; margin-top: 5px;font-size:inherit;height:37px;color:#fed136">
+                            </div>
+
+                        }
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/DichVu/Sanpham">Sản Phẩm</a>
+                    </li>
+                    @using CLEANSHOP.Models
+                    @{
+                        Customer kh = (Customer)Session["Taikhoan"];
+                    }
+                    @if (Session["Taikhoan"] == null)
+                    {
+
+                    }
+                    else
+                    {
+                        if (kh.limit == 1)
+                        {
+                            <li><a href="/DichVu/ListSach" style=" color: #fed136; " class="page-scroll">ADMIN</a></li>
+
+
+                        }
+                        else
+                        {
+                            <li><a href="#" style="margin-right:-25px;" class="page-scroll"><i class="fa-solid fa-cart-arrow-down"></i> </a></li>
+                            <li><a href="/NguoiDung/DonHangCuaToi/3" style="color: #fed136" class="page-scroll"></a></li>
+                        }
+                    }
+
+                    <li>
+                        <a class="page-scroll" style="margin-left:22px;margin-top:-15px"> @Html.Action("miniGiohang", "GioHang")</a>
+                    </li>
+
+                    @if (Session["TaiKhoan"] != null)
+                    {
+                        <li><a href="#" class="page-scroll">@Html.Partial("~/Views/GioHang/Ten.cshtml")</a></li>
+                        <li><a href="/NguoiDung/DangXuat" class="page-scroll">Đăng Xuất</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="/NguoiDung/Dangky" class="page-scroll">Đăng Ký</a></li>
+                        <li><a href="/NguoiDung/DangNhap" class="page-scroll">Đăng Nhập</a></li>
+                    }
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!--<nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top aas">
+        <div class="container"style="width:101%">-->
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <!--<div class="navbar-header page-scroll">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+            <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+        </button>
+        <a class="navbar-brand page-scroll" href="http://akmstore.com/DichVu/Index">A K 2 M &#10084; &#10084; &#10084;</a>
+    </div>-->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <!--<div class="tops navbar-collapse collapse" id="bs-example-navbar-collapse-2">
+        <ul class=" nav navbar-nav">
+            <li style="color: whitesmoke">
+                <a href="/DichVu/Sanpham" class="page-scroll " style="color: #fed136">Sản Phẩm</a>
+            </li>
+
+
+            <li>
+                <a href="#" class="page-scroll" style="display:inline-block; color: #fed136">
+
+
+                </a>
+
+            </li>
+            <li class="page-scroll"><a href="/DichVu/Nhom" style=" color: #fed136;margin-left:-32px;">Liên Hệ</a></li>
+
+            <li class="page-scroll" style="margin-top: 17px;">
+                @Html.Action("miniGiohang", "GioHang")
+            </li>
+
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-collapse ">
+            <li class="page-scroll">
+                @using (Html.BeginForm("Index2", "DichVu", FormMethod.Get, new { @class = "form-inline" }))
+                {
+                    <div class="form-group form-inline" style="display: flex; align-items: center; justify-content: center;  ">
+
+                        <input type="Text" class="form-control col-md-10 " style=" margin-top: 5px; width: auto; color: #fed136 " value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên sản phẩm cần tìm " >
+                        <input type="submit" class="btn btn-default" value="Tìm " style="margin-left: 10px; margin-top: 5px;font-size:inherit;height:37px;color:#fed136">
+                    </div>
+
+                }
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" style="color:#000">
+            @if (Session["TaiKhoan"] != null)
+            {
+
+                <li class="page-scroll"><a href="#" style="margin-right:-25px;"><i class="fa-solid fa-user"></i> </a></li>
+                <li class="page-scroll"style="color: #fed136">@Html.Partial("~/Views/GioHang/Ten.cshtml")</li>
+                <li class="page-scroll"><a href="#" style="margin-right:-25px;"><i class="fa-solid fa-right-from-bracket"></i> </a></li>
+                <li class="page-scroll"><a href="/NguoiDung/DangXuat" style="color: #fed136">Đăng Xuất</a></li>
+            }
+            else
+            {
+                <li class="page-scroll"><a href="#" style="margin-right: -25px; color: #000;"><i class="fa-solid fa-user"></i> </a></li>
+                <li class="page-scroll"><a href="/NguoiDung/Dangky"style="color: #fed136">Đăng Ký</a></li>
+                <li class="page-scroll"><a href="#" style="margin-right: -25px; color: #000;"><i class="fa-solid fa-right-to-bracket"></i></a></li>
+                <li class="page-scroll"><a href="/NguoiDung/DangNhap"style="color: #fed136">Đăng Nhập</a></li>
+            }
+
+        </ul>
+
+    </div>-->
+    <!-- /.navbar-collapse -->
+    <!--</div>-->
+    <!-- /.container-fluid -->
+    <!--</nav>-->
+    <div>
+        <div class="container body-content containers" style=" padding-top : 50px ; padding-bottom : 20px">
+            @RenderBody()
+        </div>
+        <hr />
+
+    </div>
+    <footer>
+        <div class="container" style="height:35%; ">
+            <!--Bắt Đầu Nội Dung Giới Thiệu-->
+            <div class="noi-dung about">
+                <h2>Về Chúng Tôi</h2>
+                <p>Lorem ipsumdolor sit...</p>
+                <ul class="social-icon">
+                    <li><a href="https://www.facebook.com/yoonye229"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                    <li><a href=""><i class="fab fa-youtube"></i></a></li>
+                </ul>
+            </div>
+            <!--Kết Thúc Nội Dung Giới Thiệu-->
+            <!--Bắt Đầu Nội Dung Đường Dẫn-->
+            <div class="noi-dung links">
+                <h2>Đường Dẫn</h2>
+                <ul>
+                    <li><a href="https://localhost:44364/">Trang Chủ</a></li>
+                    <li><a href="https://localhost:44364/DichVu/Nhom">Về Chúng Tôi</a></li>
+                    <li><a href="#">Thông Tin Liên Lạc</a></li>
+                    <li><a href="#">Dịch Vụ</a></li>
+                    <li><a href="#">Điều Kiện Chính Sách</a></li>
+                </ul>
+            </div>
+            <!--Kết Thúc Nội Dung Đường Dẫn-->
+            <!--Bắt Đâu Nội Dung Liên Hệ-->
+            <div class="noi-dung contact">
+                <h2>Thông Tin Liên Hệ</h2>
+                <ul class="info">
+                    <li>
+                        <span>
+                            <i class="fa fa-map-marker"></i>
+                        </span>
+
+                        <span>
+                            Đường Số 1<br />
+                            Quận 1, Thành Phố Hồ Chí Minh<br />
+                            Việt Nam
+                        </span>
+                    </li>
+                    <li>
+                        <span><i class="fa fa-phone"></i></span>
+                        <p>
+                            <a href="#">+84 941 962 202</a>
+                            <br />
+                            <a href="#">+84 987 654 321</a>
+                        </p>
+                    </li>
+                    <li>
+                        <span><i class="fa fa-envelope"></i></span>
+                        <p><a href="#">binhminh220901@gmail.com</a></p>
+                    </li>
+                    <li>
+
+                    </li>
+                </ul>
+
+            </div>
+            <!--Kết Thúc Nội Dung Liên Hệ-->
+            <div class="maps" style=" width: 100%;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4212.562119952898!2d106.71211049259838!3d10.801796272579509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528a27c890ee3%3A0xd7f92a7c003cbff5!2zSFVURUNIIC0gVHJ1bmcgdMOibSBWxINuIGjDs2EgTmdo4buHIHRodeG6rXQ!5e0!3m2!1svi!2s!4v1649095443214!5m2!1svi!2s" style="width:100%; height:200px; border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- jQuery -->
+    <script src="~/Assets/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Assets/js/Scroll.js"></script>
+
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb" crossorigin="anonymous"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="~/Assets/js/jqBootstrapValidation.js"></script>
+    <script src="~/Assets/js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="~/Assets/js/agency.min.js"></script>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("upload", required: false)
+
+
+
+</body>
+
+</html>
+<style>
+        .tops ul li {
+            color: blue;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Roboto;
+        }
+
+      @*  body {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            background: url(https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/tao_footer_cho_website/Aare.svg);
+        }*@
+
+        footer {
+            position: relative;
+            width: 100%;
+            height: auto;
+            padding: 50px 100px;
+            background: #111;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+            footer .container {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                flex-direction: row;
+            }
+                /*Thiết Lập Cho Thành Phần Nội Dung Giới Thiệu*/
+                footer .container .noi-dung {
+                    margin-right: 30px;
+                }
+
+                    footer .container .noi-dung.about {
+                        width: 40%;
+                    }
+
+                        footer .container .noi-dung.about h2 {
+                            position: relative;
+                            color: #fff;
+                            font-weight: 500;
+                            margin-bottom: 15px;
+                        }
+
+                            footer .container .noi-dung.about h2:before {
+                                content: '';
+                                position: absolute;
+                                bottom: -5px;
+                                left: 0;
+                                width: 50px;
+                                height: 2px;
+                                background: #f00;
+                            }
+
+                        footer .container .noi-dung.about p {
+                            color: #999;
+                        }
+        /*Thiết Lập Cho Thành Phần Icon Mạng Xã Hội*/
+        .social-icon {
+            margin-top: 20px;
+            display: flex;
+        }
+
+            .social-icon li {
+                list-style: none;
+            }
+
+                .social-icon li a {
+                    display: inline-block;
+                    width: 40px;
+                    height: 40px;
+                    background: #222;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-right: 10px;
+                    text-decoration: none;
+                    border-radius: 4px;
+                }
+
+                    .social-icon li a:hover {
+                        background: #f00;
+                    }
+
+                    .social-icon li a .fa {
+                        color: #fff;
+                        font-size: 20px;
+                    }
+
+        .links h2 {
+            position: relative;
+            color: #fff;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        .links h2 {
+            position: relative;
+            color: #fff;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+            .links h2::before {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 50px;
+                height: 2px;
+                background: #f00;
+            }
+
+        .links {
+            position: relative;
+            width: 25%;
+        }
+
+            .links ul li {
+                list-style: none;
+            }
+
+
+                .links ul li a {
+                    color: #999;
+                    text-decoration: none;
+                    margin-bottom: 10px;
+                    display: inline-block;
+                }
+
+                    .links ul li a:hover {
+                        color: #fff;
+                    }
+        .contact h2 {
+            position: relative;
+            color: #fff;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+            .contact h2::before {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 50px;
+                height: 2px;
+                background: #f00;
+            }
+
+        .contact {
+            width: calc(35% - 60px);
+            margin-right: 0 !important;
+        }
+
+            .contact .info {
+                position: relative;
+            }
+
+                .contact .info li {
+                    display: flex;
+                    margin-bottom: 16px;
+                }
+
+                    .contact .info li span:nth-child(1) {
+                        color: #fff;
+                        font-size: 20px;
+                        margin-right: 10px;
+                    }
+
+                    .contact .info li span {
+                        color: #999;
+                    }
+
+                    .contact .info li a {
+                        color: #999;
+                        text-decoration: none;
+                    }
+
+
+    .btn--primary {
+        background: #222;
+        color: #fff;
+        box-shadow: 0 0 10px 2px rgba(0, 0, 0, .1);
+        border-radius: 2px;
+        padding: 8px 24px;
+    }
+
+        .btn--primary:hover {
+            background: #f00;
+        }
+
+        .btn--primary:active {
+            background: #f00;
+            box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, .2);
+        }
+
+    .form__field {
+        width: 90%;
+        background: #fff;
+        color: #a3a3a3;
+        font: inherit;
+        box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .1);
+        border: 0;
+        outline: 0;
+        padding: 8px 4px;
+    }
+      }
+
+
+</style>
+<style>
+    .btn {
+        background-color: #85FFBD;
+        background-image: linear-gradient(135deg, #85FFBD 0%, #FFFB7D 100%);
+        color: black;
+    }
+
+    .aas {
+        background-color: black;
+        border-bottom: 1px solid #808080;
+    }
+</style>

@@ -1,0 +1,16 @@
+﻿
+@using CLEANSHOP.Models
+@{
+    List<Giohang> lstgiohang = Session["GioHang"] as List<Giohang>;
+}
+
+
+
+
+@if (Session["GioHang"] != null)
+{
+    <a class="getstarted scrollto active" href="@Url.Action("miniGiohang", "GioHang")" style="font-weight:bold;text-decoration:none; color:black">
+        <i class="fa-solid fa-cart-shopping"> @lstgiohang.Count()</i> 
+
+    </a>
+}

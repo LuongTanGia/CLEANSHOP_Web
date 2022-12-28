@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "checkOTP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="font-weight:bold;margin-top:80px">VUI LÒNG NHẬP MÃ OTP ĐỂ LẤY MẬT KHẨU.</h2>
+@using (Html.BeginForm())
+{
+    <input class="form-control" type="text" id="otp" name="otp" placeholder="Nhập Mã OTP" onchange="EmailCheck()" />
+    <div class="col-md-10">
+        <p id="Status" />
+    </div>
+    <br />
+    @ViewData["otp"]
+    @*<script>
+                        function emailcheck() {
+                            $("#status").html("checking...");
+                            $.post("@url.action("checkemail","home")",
+                                {
+                                    userdata: $("#email").val()
+                                },
+                                function (data) {
+                                    if (data == 1) {
+                                        $("#status").html('<font color = "red">vui lòng nhập đúng địa chỉ email</font>');
+                                        $("#username").css("border-color", "red");
+                                    }
+                                    else {
+                                        $("#status").html('<font color = "green">địa chỉ email hợp lệ</font>');
+                                        $("#username").css("border-color", "green");
+                                    }
+                                });
+                }
+        </script>*@
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Xác Nhận" class="btn btn-info" />
+        </div>
+    </div>
+}

@@ -1,0 +1,177 @@
+﻿@model CLEANSHOP.Models.Product
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chỉnh sửa thông tin sản phẩm</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+
+
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="ProductName">
+            Tên sản phẩm  :
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="ID_Type">
+            Mã loại sản phẩm  :
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ID_Type, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ID_Type, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Image">
+            Hình ảnh  :
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+            <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
+                   style="display:none;" />
+            <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
+            <img src="model => model.Image" id="pictureUpload" style="width:25%; height:25%; object-fit:cover;" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Text">
+            Văn mẫu :
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+       <label class="control-label col-md-2" for="Detail">
+           Mô tả sản phẩm  :
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Detail, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Price">
+            Giá sản phẩm  :
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @* <div class="form-group">
+            @Html.LabelFor(model => model.DisPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DisPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DisPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    *@
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Discount">
+            Giảm giá   :
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DisCount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DisCount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    @*<div class="form-group">
+           @Html.LabelFor(model => model.DisCount, htmlAttributes: new { @class = "control-label col-md-2" })
+           <div class="col-md-10">
+
+
+
+        @Html.DropDownList("DisCount", (IEnumerable<SelectListItem>)ViewBag.DisCount, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DisCount, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.DisPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Model.DisPrice
+            </div>
+        </div>*@
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Amount">
+            Số lượng sản phẩm  :
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", min = "0" } })
+            @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @section upload
+    {
+        <script>
+            $(function () {
+                $('#btnUpload').click(function () {
+                    $('#fileUpload').trigger('click');
+                });
+            });
+            $('#fileUpload').change(function () {
+                if (window.FormData !== undefined) {
+                    var fileUpload = $('#fileUpload').get(0);
+                    var files = fileUpload.files;
+                    var formData = new FormData();
+                    formData.append('file', files[0]);
+                    $.ajax
+                        ({
+                            type: 'POST',
+                            url: '/DichVu/ProcessUpload',
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            success: function (urlImage) {
+                                $('#pictureUpload').attr('src', urlImage);
+                                $('#Image').val(urlImage);
+                            },
+                            error: function (err) {
+                                alert('Error ', err.statusText);
+
+                            }
+                        });
+                }
+            });
+        </script>
+    }
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Lưu" class="btn btn-info" />
+        </div>
+    </div>
+
+}
+
+<style>
+    .form-control {
+        width: 35%;
+    }
+</style>

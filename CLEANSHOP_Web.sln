@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLEANSHOP", "CLEANSHOP\CLEANSHOP.csproj", "{2B9F9D3F-2D1B-4768-8AC7-2C629F00886A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B9F9D3F-2D1B-4768-8AC7-2C629F00886A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B9F9D3F-2D1B-4768-8AC7-2C629F00886A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B9F9D3F-2D1B-4768-8AC7-2C629F00886A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B9F9D3F-2D1B-4768-8AC7-2C629F00886A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CDB724D4-0D7A-4B88-AF8F-C31946117100}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,162 @@
+﻿@model IEnumerable<CLEANSHOP.Models.Giohang>
+
+@using CLEANSHOP.Models
+@{ List<Giohang> lstGiohang = Session["GioHang"] as List<Giohang>; }
+
+@*<a class="getstarted scrollto active" href="@Url.Action("Giohang", "GioHang")" style="font-weight:bold;text-decoration:none">
+        <sup>
+            @if (Session["GioHang"] != null)
+            {
+                @lstGiohang.Count()}
+        </sup>
+
+
+
+    </a>*@
+@if (lstGiohang.Count != 0)
+{
+
+
+
+<div class="aa">
+    <a href="@Url.Action("Giohang", "GioHang")">
+        <i class="fa fa-shopping-cart" style="color:#ffffff;"></i><sup style="color: white; font-size: 15px; top: 8px; border-radius: 50%;left:-4px">
+            @if (Session["GioHang"] != null)
+            {
+@lstGiohang.Count()}
+
+        </sup>
+    </a>
+    <div>
+        <div style="width: 0px; height: 0px; border: 10px solid white; border-color: transparent transparent white; margin-left: 20px;" class="bbs">
+
+        </div>
+        <div style="width: 550px; z-index: 100; background:white; position: absolute;" class="bb">
+
+
+
+            <p style="text-align:center;">Giỏ Hàng</p>
+            <table class="table">
+
+
+
+                @foreach (var item in Model)
+                {
+
+<tr>
+    <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+    <td width="100px"> <img src="@item.Image" style="width:30%" /></td>
+    @using (Html.BeginForm("CapnhatGiohang", "GioHang", new { @id = item.ID }))
+    {
+<td>@String.Format("{0:0,0}", item.DisPrice) VNĐ </td>
+                        <td> <input type="number" min=" 1" name="txtSolg" value="@item.iSoLuong" style="width:40px; border:none" /></td>
+                                                <td style="display:flex">
+                                                    @Html.ActionLink("Xóa", "XoaGiohang", new { @id = item.ID })
+                                                </td>
+}
+</tr>
+}
+
+
+
+
+            </table>
+
+            <div style="text-align:center; margin-bottom:5px;">
+
+                <a value="Xác nhận" class="btn btn-success" href="@Url.Action("GioHang", "GioHang")" style="align-items: center; background-color: #85FFBD; background-image: linear-gradient(135deg, #85FFBD 0%, #FFFB7D 100%); color: black;">Xem Giỏ Hàng </a>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+}
+else
+{
+<div class="aa">
+    <a href="@Url.Action("Giohang", "GioHang")">
+        <i class="fa fa-shopping-cart" style="color:#ffffff;"></i><sup style="color: white; font-size: 15px; top: 8px; border-radius: 50%;left:-4px">
+            @if (Session["GioHang"] != null)
+            {
+@lstGiohang.Count()}
+
+        </sup>
+    </a>
+    <div>
+        <div style="width: 0px; height: 0px; border: 10px solid white; border-color: transparent transparent white; margin-left: 20px;" class="bbs">
+
+        </div>
+        <div style="width: 550px; z-index: 100; background:white; position: absolute;" class="bb">
+
+
+
+            <p style="text-align:center;">Giỏ Hàng Trống</p>
+            <div class="cart-null">
+                <h3>Chưa Có Sản Phẩm !!</h3>
+            </div>
+
+            <div style="text-align:center; margin-bottom:5px;">
+
+                <a value="Xác nhận" class="btn btn-success" href="@Url.Action("GioHang", "GioHang")" style="align-items: center; background-color: #85FFBD; background-image: linear-gradient(135deg, #85FFBD 0%, #FFFB7D 100%); color: black;">Xem Giỏ Hàng </a>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+}
+<style>
+    .colorgraph {
+        height: 5px;
+        border-top: 0;
+        background: #c4e17f;
+        border-radius: 5px;
+        background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+        background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+        background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+        background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    }
+
+
+
+    .gradient-custom {
+        /* fallback for old browsers */
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background-color: blue;
+    }
+
+    .aa:hover .bb {
+        transform: translate(-350px,0);
+    }
+
+    .bb {
+        margin-top: 5px;
+        border-radius: 20px;
+        transition: all 0.5s ease-in;
+        transform: translate(0px,-500px);
+    }
+
+    .bbs {
+        transform: translate(0px,-200px);
+    }
+
+    .aa:hover .bbs {
+        transform: translate(0px,0);
+        transition: all 0.5s ease-in;
+        margin-bottom: -5px;
+        padding-bottom: 0;
+    }
+    .cart-null {
+        background-image: url(https://images.pexels.com/photos/5632396/pexels-photo-5632396.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+        background-position:center center;
+        background-size:cover;
+        width:100%;
+        height:200px;
+        }
+    .cart-null h3{
+        transform:translate(20%,60%);
+    }
+</style>

@@ -1,0 +1,168 @@
+﻿@model CLEANSHOP.Models.Customer
+
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = null;
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="~/Assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" />
+
+<style>
+
+    .login_left {
+        width: 60%;
+        height: 100vh;
+    }
+
+        .login_left img {
+            height: 100vh;
+            object-fit: cover;
+            width: 100%;
+        }
+
+    body {
+        height: 100vh;
+        min-height: 100vh;
+    }
+
+    .box {
+        right: 0;
+        transform: translate(-150px,200px);
+        position: absolute;
+        width: 380px;
+        height: 420px;
+        background: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+        .box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 380px;
+            height: 420px;
+            background-color: yellow;
+            animation: animate 6s linear infinite;
+            transform-origin: bottom right;
+        }
+
+        .box::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 300px;
+            height: 420px;
+            background-color: yellow;
+            animation: animate 6s linear infinite;
+            transform-origin: bottom right;
+            animation-delay: -3s;
+        }
+
+    @@keyframes animate {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .form {
+        position: absolute;
+        inset: 2px;
+        border-radius: 8px;
+        background: #ffffff;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div style="display:flex;">
+
+        <div class="login_left">
+            <img src="~/Content/Images/login_img.jpg" alt="Alternate Text" />
+        </div>
+        <div class="box">
+
+            <div class="form">
+                <div style="margin: 20px">
+                    <h3>Đăng Nhập </h3>
+                </div>
+                <div style="margin: 20px">
+                    <div class="form-group">
+                        <div class="col-md-10" style="margin-bottom:20px">
+                            @Html.EditorFor(model => model.LoginName, new { htmlAttributes = new { @class = "form-control", placeholder = "Tên đăng nhập" } })
+                            @Html.ValidationMessageFor(model => model.LoginName, "", new { @class = "text-danger" })
+                            <i></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10 ">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", Type = "password", placeholder = "Password", Id = "myInput" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                            <input class="" type="checkbox" onclick="myFunction()" style="color:black;" />
+
+                        </div>
+                    </div>
+
+                    <p style="color:red;margin-right:34px;">@ViewBag.ThongBao</p>
+                    <div class="form-group" style="margin-top:30px">
+                        <div class="col-md-10 " style=" margin-top: 10px">
+                            <input type="submit" value="Đăng nhập " class="btn btn-info" style="width: 100%; background-color: #85FFBD; background-image: linear-gradient(135deg, #85FFBD 0%, #FFFB7D 100%);color:black" />
+
+                        </div>
+                        <a href="@Url.Action("ForgotPassword","NguoiDung")" style="margin-left:50%;">Quên mật khẩu</a>
+
+
+                    </div>
+
+                </div>
+                <div>
+                    <a class="btn btn-info" style="margin:initial ;margin-left:20px; background-color:transparent; color: black;" href="/NguoiDung/LoginFB"><i class="fab fa-facebook" style="color:cornflowerblue"></i> Facebook </a>
+                    <a class="btn btn-info" style="margin:initial ;margin-left:20px; background-color:transparent; color: black;" href="/NguoiDung/LoginFB"><i class="fab fa-google"  style="color: indianred"></i> Google </a>
+                    <a class="btn btn-info" style="margin:initial ;margin-left:20px; background-color:transparent; color: black;" href="/NguoiDung/LoginFB"><i class="fab fa-apple" style="color: black"></i> Apple </a>
+                </div>
+                <div style="display:flex; justify-content:space-between ; margin:20px">
+
+                    <a class="btn btn-info" style="margin: initial; right: 0; background-color: #85FFBD; background-image: linear-gradient(135deg, #85FFBD 0%, #FFFB7D 100%);color:black" href="@Url.Action("DangKy", "NguoiDung", new { @class = "form-control" })">Đăng ký</a>
+
+                   
+
+                </div>
+            </div>
+        </div> <!-- card.// -->
+
+    </div>
+
+
+    <!-- col.// -->
+
+
+}
+
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
+
+

@@ -1,0 +1,7 @@
+﻿@using CLEANSHOP.Models
+@{
+    Customer kh = (Customer)Session["TaiKhoan"];
+}
+<a class="getstarted scrollto active" href="@Url.Action("profile","NguoiDung",new { @id = kh.IdCustomer})" style="text-decoration: none; margin-top:-29px">
+    @kh.Name
+</a>

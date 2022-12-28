@@ -1,0 +1,243 @@
+﻿
+                                              @*<style>
+
+</style>
+
+<section class="vh-100">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <h2>Giỏ Hàng(@ViewBag.Tongsoluongsanpham)</h2>
+            <div class="col" style="display:flex; ">
+                <div>
+
+                    @foreach (var item in Model)
+                    {<hr />
+                        <div class="card mb-4">
+                            <div class="card-body p-4">
+
+                                <div class="row align-items-center">
+                                    <div class="col-md-2">
+                                        <img src="@item.Image" class="img-fluid" alt="Generic placeholder image" width="100%">
+                                    </div>
+                                    <div class="col-md-2 d-flex justify-content-center">
+                                        <div>
+                                            <p class="small text-muted mb-4 pb-2"> @Html.DisplayNameFor(model => model.ProductName)</p>
+                                            <p class="lead fw-normal mb-0"> @Html.DisplayFor(modelItem => item.ProductName)</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 d-flex justify-content-center">
+                                        <div>
+                                            <p class="small text-muted mb-4 pb-2"> @Html.DisplayNameFor(model => model.DisPrice)</p>
+                                            <p class="lead fw-normal mb-0">
+                                                @String.Format("{0:0,0}", item.DisPrice) VNĐ
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 d-flex justify-content-center">
+                                        <div>
+                                            <p class="small text-muted mb-4 pb-2"> @Html.DisplayNameFor(model => model.iSoLuong)</p>
+                                            <p class="lead fw-normal mb-0">
+                                                <input type="number" min="1" max="@item.soluongton" name="txtSoLg"
+                                                       value="@item.iSoLuong" style="border:none; width:50px;" />
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 d-flex justify-content-center">
+                                        <div>
+                                            <p class="small text-muted mb-4 pb-2"> @Html.DisplayNameFor(model => model.TotalPrice)</p>
+                                            <p class="lead fw-normal mb-0"> @Html.DisplayFor(modelItem => item.TotalPrice)</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 d-flex justify-content-center">
+                                        <div>
+                                            <a href="@Url.Action("Detail", "DichVu", new { @id = item.ID })">
+                                                Chi tiết
+                                            </a> | @Html.ActionLink("Xóa", "XoaGiohang", new { @id = item.ID })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2 d-flex justify-content-end">
+                                        <div>
+                                            <input type="submit" value="Cập nhật" class="btn btn-success" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr />
+                    }
+                </div>
+                <div style="background:white;  text-align:right; width:100%; display:flex; justify-content:space-between; flex-direction:column; border:0.01em solid #ccc;align-items:center; ">
+                    <div style="display:flex; justify-content:space-between; flex-direction:column; align-items:center; margin:auto 20px;">
+                        <h4 style="padding:10px;"> Số loại sản phẩm : @ViewBag.Tongsoluongsanpham </h4>
+                        <h4 style="padding:10px;"> Số lượng sản phẩm: @ViewBag.Tongsoluong </h4>
+                        <div style="padding:10px; ">
+                            <h4 style="display:flex; text-align:right;">
+                                @if (ViewBag.TongTien <= 300000)
+                                {
+                                    <p colspan="4">Tổng tiền:</p>
+                                    <p> @String.Format("{0:0,0}", ViewBag.Tongtien) <span>vnđ</span></p>
+                                }
+                                else
+                                {
+                                    if (ViewBag.TongTien > 300000 && ViewBag.TongTien <= 500000)
+                                    {
+                                        <p colspan="4">Tổng tiền:</p>
+                                        <p style=" text-decoration-line:line-through"> @String.Format("{0:0,0}", ViewBag.Tongtien) VND</p>
+                                        <p colspan="4">Giảm Giá:</p>
+                                        <p> @String.Format("{0:0,0}", ViewBag.TienGiam1) VND </p>
+                                    }
+                                    else
+                                    {
+                                        <p colspan="4">Tổng tiền:</p>
+                                        <p style=" text-decoration-line:line-through"> @String.Format("{0:0,0}", ViewBag.Tongtien) VND</p>
+                                        <p colspan="4">Giảm Giá:</p>
+                                        <p> @String.Format("{0:0,0}", ViewBag.TienGiam2) VND </p>
+                                    }
+
+                                }
+                            </h4>
+
+                        </div>
+                        <div style="margin:50px; display :flex; justify-content:center;  ">
+
+                            <a class="btn btn-success" style="margin-right:40px;"
+                               href=@Url.Action("Dathang", "GioHang")> ĐẶT HÀNG </a>
+                            <a class="btn btn-danger"
+                               href=@Url.Action("XoaTatCaGioHang", "GioHang")>Xóa tất cả</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+        <a class="btn" style="background-color:black; color:white;"
+           href=@Url.Action("Index2", "DichVu")>&#60; TIẾP TỤC MUA SẮM </a>
+    </div>
+</section>-->*@
+                                              @model IEnumerable<CLEANSHOP.Models.Giohang>
+                                              @{ ViewBag.Title = "GioHang"; Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<h2>AK2M | Giỏ Hàng (@ViewBag.Tongsoluongsanpham loại sản phẩm đang có trong giỏ hàng )</h2>
+
+    <div style=" display: flex; flex-wrap: wrap; ">
+
+    @foreach (var item in Model)
+    {
+      <div style="display:flex; justify-content:space-between; width:100%; margin:20px; background: white;">
+
+
+            <img src="@item.Image" width="180" />
+
+            <table class="table">
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DisPrice)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.iSoLuong)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalPrice)
+                    </th>
+                    <th></th>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    @using (Html.BeginForm("CapnhatGiohang", "GioHang", new
+                    { @id = item.ID }))
+                    {
+                        <td> @String.Format("{0:0,0}", item.DisPrice) VNĐ </td>
+                        <td>
+                            <input type="number" min="1" max="@item.soluongton" name="txtSoLg"
+                                   value="@item.iSoLuong" style="border:none; width:50px;" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalPrice)
+                        </td>
+
+                        <td>
+                            <a href="@Url.Action("Detail", "DichVu", new { @id = item.ID })">
+                                Chi tiết
+                            </a> | @Html.ActionLink("Xóa", "XoaGiohang", new { @id = item.ID })
+                        </td>
+                        <td style="margin:0;padding:2px;">
+                            <input type="submit" value="Cập nhật" class="btn btn-success" style="margin:0"/>
+                        </td>
+                    }
+                </tr>
+
+
+            </table>
+
+
+       </div>
+    }
+    </div>
+
+
+<div style="background:white;  text-align:right; width:100%; display:flex; justify-content:space-between;">
+    <h4 style="padding:10px;"> Số loại sản phẩm : @ViewBag.Tongsoluongsanpham </h4>
+    <h4 style="padding:10px;"> Số lượng sản phẩm: @ViewBag.Tongsoluong </h4>
+    <h4 style="padding:10px; color:red">
+        <td>
+            @if (ViewBag.TongTien <= 300000)
+            {
+                <p colspan="4">Tổng tiền:</p>
+                <p> @String.Format("{0:00}", ViewBag.Tongtien) <span>vnđ</span></p>
+            }
+            else
+            {
+                if (ViewBag.TongTien > 300000 && ViewBag.TongTien <= 500000)
+                {
+                    <p colspan="4">Tổng tiền:</p>
+                    <p style=" text-decoration-line:line-through"> @String.Format("{0:0}", ViewBag.Tongtien) VND</p>
+                    <p colspan="4">Giảm Giá:</p>
+                    <p> @String.Format("{0:0,0}", ViewBag.TienGiam1) VND </p>
+                }
+                else
+                {
+                    <p colspan="4">Tổng tiền:</p>
+                    <p style=" text-decoration-line:line-through"> @String.Format("{0:0,0}", ViewBag.Tongtien) VND</p>
+                    <p colspan="4">Giảm Giá:</p>
+                    <p> @String.Format("{0:0,0}", ViewBag.TienGiam2) VND </p>
+                }
+
+            }
+        </td>
+    </h4>
+
+</div>
+
+@*<tr style="font-weight: bold; text-align:left; color:red">
+        <td colspan="2"> Số loại sản phẩm : @ViewBag.Tongsoluongsanpham </td>
+        <td colspan="2"> Số lượng sản phẩm: @ViewBag.Tongsoluong </td>
+        <td colspan="4">
+            Tổng tiền: @String.Format("{0:0,0}", @ViewBag.Tongtien) VNĐ
+        </td>
+    </tr>
+    <tr style="font-weight:bold; color:blue; text-align:right ">
+        <td colspan="5">
+            @Html.ActionLink("Xóa giỏ hàng", "XoaTatCaGioHang")
+        </td>
+    </tr>*@
+<div style="margin:50px; display :flex; justify-content:center;  ">
+
+    <a class="btn btn-success" style="margin-right:40px;"
+       href=@Url.Action("Dathang", "GioHang")> ĐẶT HÀNG </a>
+    <a class="btn btn-danger"
+       href=@Url.Action("XoaTatCaGioHang", "GioHang")>Xóa tất cả</a>
+</div>

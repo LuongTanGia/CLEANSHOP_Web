@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CLEANSHOP.Models.TypeShoe>
+
+
+<div class="dropdown minh">
+    <h4 type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top:20px;font-weight:normal">
+        Giày &#8827;
+    </h4>
+
+    <div class="dropdown-menu minh2" aria-labelledby="dropdownMenuButton" style="text-align:left;background-color :white;transform:translate(159px,-40px)">
+        @foreach (var item in Model)
+        {
+            <a href="@Url.Action("SPTheoLoai2", "DichVu", new { id = item.ID_TypeShoes })" class="dropdown-item" style="margin-left: 5px; text-decoration: none; color: black; background-color: snow">
+                &#10149;	 @item.Name_TypeShoes
+                <hr />
+            </a>
+        }
+       
+    </div>
+</div>
+<style>
+    .minh {
+        width: 200px;
+        margin-top: -30px;
+        ;
+    }
+
+        .minh:hover .minh2 {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+</style>
+

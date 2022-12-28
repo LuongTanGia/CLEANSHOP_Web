@@ -1,0 +1,51 @@
+﻿@model CLEANSHOP.Models.Customer
+
+@{
+    ViewBag.Title = "changeforgotpass";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="margin-top:80px">Thay Đổi Mật Khẩu</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IdCustomer)
+        <div class="form-group">
+            <div class="col-md-10">
+                <strong>Mật Khẩu:</strong>
+                <input class="form-control text-box single-line input-validation-error"
+                       data-val="true" data-val-required="Phải nhập mật khẩu xác nhận!"
+                       id="MatKhau" name="MatKhau" type="password" value="" aria-describedby="MatKhau-error" aria-invalid="true">
+                @ViewData["nhapMK"]
+                @ViewData["dodaiMK"]
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label for="MatKhauXacNhan">
+                    Mật Khẩu Xác Nhận:
+                </label>
+                <input class="form-control text-box single-line input-validation-error"
+                       data-val="true" data-val-required="Phải nhập mật khẩu xác nhận!"
+                       id="MatKhauXacNhan" name="MatKhauXacNhan" type="password" value="" aria-describedby="MatKhauXacNhan-error" aria-invalid="true">
+                @ViewData["NhapMKXN"]
+                @ViewData["MatKhauGiongNhau"]
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu Mật Khẩu" class="btn btn-default" />
+
+                <button class="btn btn-success">
+                    @Html.ActionLink("Trở Về", "Index2")
+                </button>
+            </div>
+        </div>
+    </div>
+}

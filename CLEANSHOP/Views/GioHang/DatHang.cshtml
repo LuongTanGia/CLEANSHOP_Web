@@ -1,0 +1,192 @@
+﻿@model IEnumerable<CLEANSHOP.Models.Giohang>
+
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Đặt hàng</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DisPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.iSoLuong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @Html.DisplayFor(modelItem => item.ProductName) </td>
+            <td> <img src="@item.Image" width="180" /> </td>
+            @using (Html.BeginForm("CapnhatGiohang", "GioHang", new { @id = item.ID }))
+            {
+                <td> @string.Format("{0:0,0}", item.DisPrice) VNĐ </td>
+                <td>
+                    <input type="number" min="1" name="txtSoLg"
+                           value="@item.iSoLuong" />
+                </td>
+                <td> @Html.DisplayFor(modelItem => item.TotalPrice) </td>
+                <td>
+                    <a href="@Url.Action("Detail", "DichVu", new { id = item.ID })">
+                        Chi
+                        tiết
+                    </a> | @Html.ActionLink("Xóa", "XoaGiohang", new { @id = item.ID })
+                </td>
+                <td>
+                    <input type="submit" value="Cập nhật" class="btn btn-success" />
+                </td>
+            }
+        </tr>
+    }
+    <tr style="font-weight:bold; text-align:left; color:red">
+        <td colspan="2"> Số loại sản phẩm: @ViewBag.Tongsoluongsanpham </td>
+        <td colspan="2"> số lượng sản phẩm: @ViewBag.Tongsoluong </td>
+        <td colspan="4">
+
+            @if (ViewBag.TongTien <= 300000)
+            {
+                <p colspan="4">Tổng tiền:</p>
+                <p> @String.Format("{0:0,0}", ViewBag.Tongtien) VND</p>
+            }
+            else
+            {
+                if (ViewBag.TongTien > 300000 && ViewBag.TongTien <= 500000)
+                {
+                    <p colspan="4">Tổng tiền:</p>
+                    <p style=" text-decoration-line:line-through"> @String.Format("{0:0,0}", ViewBag.Tongtien) VND</p>
+                    <p colspan="4">Giảm giá còn:</p>
+                    <p> @String.Format("{0:0,0}", ViewBag.TienGiam1) vnd </p>
+                }
+                else
+                {
+                    <p colspan="4">Tổng tiền:</p>
+                    <p style=" text-decoration-line:line-through"> @String.Format("{0:0,0}", ViewBag.Tongtien) VND</p>
+                    <p colspan="4">Giảm giá còn:</p>
+                    <p> @String.Format("{0:0,0}", ViewBag.TienGiam2) VND </p>
+                }
+
+            }
+        </td>
+    </tr>
+    <tr style="font-weight:bold; text-align:right">
+        <td colspan="6" >
+            <a style = margin-inline: 113px;>@Html.ActionLink("Trở về giỏ hàng", "Giohang", "GioHang") </a> </td>
+    </tr>
+    <tr style="font-weight:bold; color:blue; text-align:right ">
+        <td colspan="5">
+            @Html.ActionLink("Xóa giỏ hàng", "XoaTatCaGioHang")
+        </td>
+    </tr>
+    <tr style="font-weight:bold; color:yellow; text-align:right ">
+        <td colspan="5">
+            <button class="btn btn-info">  @Html.ActionLink("Đặt hàng", "Dathang", "GioHang") </button>
+        </td>
+
+    </tr>
+</table>
+
+@using CLEANSHOP.Models
+<h2 style-"text-align:center">Thông tin đặt hàng</h2>
+@{ Customer kh = (Customer)Session["TaiKhoan"]; }
+<table align-"center">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <tr style="height:40px">
+            <td>Họ tên : </td>
+            <td style="font-weight:bold">@kh.Name</td>
+        </tr>
+        <tr style="height:40px">
+            <td>Email: </td>
+            <td style="font-weight:bold">@kh.Email</td>
+        </tr>
+        <tr style="height:40px">
+            <td>Địa chỉ: </td>
+            <td style-"font-weight:bold">@kh.Address</td>
+        </tr>
+        <tr style="height:40px">
+            <td>Điện thoại: </td>
+            <td style="font-weight:bold">@kh.Phone</td>
+        </tr>
+        <tr style="height:40px">
+            <td>Ngày đặt: </td>
+            <td style="font-weight:bold">@DateTime.Now.ToShortDateString()</td>
+        </tr>
+        <tr style="height:40px">
+            <td>Ngày giao: </td>
+            <td style="font-weight:bold">
+                <input type="date" id="BookingDate" name="BookingDate" />
+            </td>
+        </tr>
+        <tr style="height:40px">
+            <td></td>
+            <td style="font-weight:bold">
+                @*<a value="Xác nhận" class="btn btn-success" href="@.Action("DatHang","GioHang")">Thanh toán truc tiep </a>*@
+                <input type="submit" id=" btnDatHang" class="btn btn-success" value="Thanh toán truc tiep" />
+
+                <a href="@Url.Action("Payment","momo")">Thanh toán bằng MOMO</a>
+            </td>
+        </tr>
+    }
+</table>
+
+
+@*<script>
+        document.getElementById("btnDatHang").onclick = function (e) {
+            var selectedDate = document.getElementById("booking").value;
+            if (!Date.parse(selectedDate)) {
+                Swal.fire({
+                    title: 'Thông báo',
+                    text: 'Vui lòng chọn ngày giao hàng!',
+                    icon: 'error',
+                })
+                e.preventDefault();
+            }
+            if (Date.parse(selectedDate) < Date.now()) {
+                Swal.fire({
+                    title: 'Thông báo',
+                    text: 'Ngày giao hàng phải lớn hơn hiện tại!',
+                    icon: 'error',
+                })
+                e.preventDefault();
+            }
+        }
+    </script>*@
+<script>
+    function setInputDate(_id) {
+        var _dat = document.querySelector(_id);
+        var hoy = new Date(),
+            d = hoy.getDate(),
+            m = hoy.getMonth() + 1,
+            y = hoy.getFullYear(),
+            data;
+
+        if (d < 10) {
+            d = "0" + d;
+        };
+        if (m < 10) {
+            m = "0" + m;
+        };
+
+        data = y + "-" + m + "-" + d;
+        console.log(data);
+        _dat.value = data;
+    };
+
+    setInputDate("#BookingDate");
+</script>

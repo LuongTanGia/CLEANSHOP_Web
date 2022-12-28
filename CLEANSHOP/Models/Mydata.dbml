@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CLEANSHOP" Class="MydataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-C560BEH;Initial Catalog=CLEANSHOP;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CLEANSHOPConnectionString2" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Cart" Member="Carts">
+    <Type Name="Cart">
+      <Column Name="IdCart" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TotalPrice" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="DeliveryDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="BookingDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Delivery" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Customer_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Cart_CartDetail" Member="CartDetails" ThisKey="IdCart" OtherKey="IdCart" Type="CartDetail" />
+      <Association Name="Customer_Cart" Member="Customer" ThisKey="Customer_Id" OtherKey="IdCustomer" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TypeShoes" Member="TypeShoes">
+    <Type Name="TypeShoe">
+      <Column Name="ID_TypeShoes" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name_TypeShoes" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="TypeShoe_Product" Member="Products" ThisKey="ID_TypeShoes" OtherKey="ID_Shoes" Type="Product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CartDetail" Member="CartDetails">
+    <Type Name="CartDetail">
+      <Column Name="IdProduct" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdCart" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Cart_CartDetail" Member="Cart" ThisKey="IdCart" OtherKey="IdCart" Type="Cart" IsForeignKey="true" />
+      <Association Name="Product_CartDetail" Member="Product" ThisKey="IdProduct" OtherKey="Id" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="IdCustomer" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LoginName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DateofBirth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="limit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="forgotpasscode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Customer_Cart" Member="Carts" ThisKey="IdCustomer" OtherKey="Customer_Id" Type="Cart" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Product" Member="Products">
+    <Type Name="Product">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Detail" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Time" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Text" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DisPrice" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="DisCount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ID_Type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_Shoes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Product_CartDetail" Member="CartDetails" ThisKey="Id" OtherKey="IdProduct" Type="CartDetail" />
+      <Association Name="TypeShoe_Product" Member="TypeShoe" ThisKey="ID_Shoes" OtherKey="ID_TypeShoes" Type="TypeShoe" IsForeignKey="true" />
+      <Association Name="Type_Product" Member="Type" ThisKey="ID_Type" OtherKey="ID_Type" Type="Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Type" Member="Types">
+    <Type Name="Type">
+      <Column Name="ID_Type" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameType" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Association Name="Type_Product" Member="Products" ThisKey="ID_Type" OtherKey="ID_Type" Type="Product" />
+    </Type>
+  </Table>
+</Database>

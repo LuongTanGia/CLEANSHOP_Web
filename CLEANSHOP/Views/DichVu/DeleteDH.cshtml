@@ -1,0 +1,64 @@
+﻿@model CLEANSHOP.Models.Cart
+
+@{
+    ViewBag.Title = "DeleteDH";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Đơn hàng</h2>
+
+<h3>Xác nhận khách hàng đã nhận hàng </h3>
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Khách Hàng :
+            @*@Html.DisplayNameFor(model => model.Customer_Id)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Name)
+        </dd>
+        <dt>
+            Tổng tiền:
+            @*@Html.DisplayNameFor(model => model.TotalPrice)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice) VND
+        </dd>
+
+        <dt>
+            Ngày giao:
+            @*@Html.DisplayNameFor(model => model.DeliveryDate)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryDate)
+        </dd>
+
+        <dt>
+            Ngày đặt :
+            @*@Html.DisplayNameFor(model => model.BookingDate)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookingDate)
+        </dd>
+
+        
+
+        
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xác Nhận" class="btn btn-default" /> |
+            @Html.ActionLink("Về trang chủ", "DonHang")
+        </div>
+    }
+</div>
